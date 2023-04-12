@@ -17,7 +17,6 @@ url = 'https://maps.googleapis.com/maps/api/streetview'
 location = args.location
 size = '640x640'
 fov = '120'
-heading = '0'
 api_key = 'AIzaSyChPNBO4t214jrW1eO1qTd8jlUYTLO3A_8'
 
 # Define output directory
@@ -31,8 +30,6 @@ file_name = os.path.join(output_dir, f'{location}.jpg')
 # Define panorama parameters
 pano_size = '4096x2048'
 pano_fov = '360'
-pano_heading = '0'
-pano_pitch = '0'
 
 # Define Google Street View API endpoint for panoramic image
 pano_url = f'{url}?size={pano_size}&location={location}&fov={pano_fov}&key={api_key}'
@@ -43,40 +40,31 @@ pano_response = requests.get(pano_url)
 # Load panoramic image
 pano_image = np.asarray(bytearray(pano_response.content), dtype=np.uint8)
 pano_image = cv2.imdecode(pano_image, cv2.IMREAD_COLOR)
-cv2.imwrite(file_name, pano_image)
-cv2.imshow('Panoramic Image', pano_image)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
 
-# # Define number of rotations (set to 3 for demonstration purposes)
-# num_rotations = 3
+# Define number of rotations (set to 3 for demonstration purposes)
+num_rotations = 3
 
-# # Define rotation angle
-# rotation_angle = 360 / num_rotations
+# Define rotation angle
+rotation_angle = 360 / num_rotations
 
-# # Rotate and save image for each heading
-# pano_image = []
+# Rotate and save image for each heading
+pano_image = []
 
-# for i in range(num_rotations):
-#     # Define parameters for regular Street View image
-#     heading = str(i * rotation_angle)
-#     params = {'size': size, 'location': location, 'fov': fov, 'heading': heading, 'key': api_key}
+for i in range(num_rotations):
+    # Define parameters for regular Street View image
+    heading = str(i * rotation_angle)
+    params = {'size': size, 'location': location, 'fov': fov, 'heading': heading, 'key': api_key}
 
-#     # Request image from Google Street View API
-#     response = requests.get(url, params=params)
+    # Request image from Google Street View API
+    response = requests.get(url, params=params)
 
-#     # Load image using OpenCV
-#     image = np.asarray(bytearray(response.content), dtype=np.uint8)
-#     image = cv2.imdecode(image, cv2.IMREAD_COLOR)
-#     pano_image.append(image)
+    # Load image using OpenCV
+    image = np.asarray(bytearray(response.content), dtype=np.uint8)
+    image = cv2.imdecode(image, cv2.IMREAD_COLOR)
+    pano_image.append(image)
 
-# # Stitch images together to form a panoramic image
-# pano_stitch = np.concatenate((pano_image), axis=1)
+# Stitch images together to form a panoramic image
+pano_stitch = np.concatenate((pano_image), axis=1)
 
-# # Save panoramic image
-# cv2.imwrite(file_name, pano_stitch)
-
-# # Display panoramic image
-# cv2.imshow('Panoramic Image', pano_stitch)
-# cv2.waitKey(0)
-# cv2.destroyAllWindows()
+# Save panoramic image
+cv2.imwrite(file_name, pano_stitch)
