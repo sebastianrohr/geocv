@@ -7,25 +7,24 @@ GeoCV is a Python-based bot that plays the popular online game, Geoguessr, for y
 - Easy-to-use command line interface
 - Customizable settings for game difficulty and bot accuracy
 
-## 📋 Requirements
-- Python 3.11
-- Additional Python packages: `numpy`, `opencv-python`
-## ⚙️ Installation
-1. Clone this repository using Git or download the ZIP file and extract it to your preferred directory.
-
-2. Install the required packages using pip:
-```pip install -r requirements.txt```
-
-3. Create a .env file in the root directory of the project and add your Google Maps API key:
-```GMAPS_API_KEY=your_api_key_here```
-
-4. You're ready to go! Run the bot using the command:
-```python geocv.py```
+## 💻 Installation:
+1. Create a new virtual environment:
+```
+python3 -m venv env
+source env/bin/activate
+```
+2. Install the required dependencies:
+```
+pip3 install -r requirements.txt
+```
 
 ## 🎮 Usage
-The bot will automatically play Geoguessr for you, guessing the location of each image it receives. You can customize the settings in the `config.py` file to adjust the game difficulty and bot accuracy.
+To use the GeoCV pipeline, run the following command:
 
-To stop the bot, simply press `Ctrl + C` in the terminal.
+```
+python3 main.py -l paris -n 10
+```
+Here, the `-l` flag specifies the location and `-n` specifies number of locations you want to geolocate,
 
 ## 🤝 Contributing
 Contributions to GeoCV are welcome! If you have an idea for a new feature or want to improve the code, please submit a pull request with your changes.
