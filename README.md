@@ -8,13 +8,10 @@ GeoCV is a Python-based bot that plays the popular online game, Geoguessr, for y
 - Customizable settings for game difficulty and bot accuracy
 
 ## 💻 Installation:
-1. Create a new virtual environment:
+1. Create a new virtual environment and install the required dependencies:
 ```
 python3 -m venv env
 source env/bin/activate
-```
-2. Install the required dependencies:
-```
 pip3 install -r requirements.txt
 ```
 
