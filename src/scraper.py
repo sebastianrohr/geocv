@@ -5,12 +5,13 @@ import numpy as np
 import argparse
 import math
 import random
+import folium
 
 api_key = 'AIzaSyChPNBO4t214jrW1eO1qTd8jlUYTLO3A_8'
 parser = argparse.ArgumentParser(description='Geolocation using Google Street View and computer vision.')
 parser.add_argument('-l', '--location', type=str, required=True, 
                     help='Location to geolocate')
-parser.add_argument('-n', '--number', type=int, required=True, 
+parser.add_argument('-n', '--number', type=int, required=False, 
                     help='Number of location')
 args = parser.parse_args()
 location = args.location
@@ -20,6 +21,10 @@ def get_coordinates(location) -> dict:
     response_json = response.json()
     latitude = response_json["results"][0]["geometry"]["location"]["lat"]
     longitude = response_json["results"][0]["geometry"]["location"]["lng"]
+
+    output_dir = f'../output/{location.lower()}'
+    if not os.path.exists(output_dir):
+        os.mkdir(output_dir)
 
     # Use the Haversine formula to calculate the latitude and longitude ranges that correspond to a 10-kilometer radius
     lat_range = 0.00904371733 * 10
@@ -35,7 +40,12 @@ def get_coordinates(location) -> dict:
     lat = random.uniform(bbox['south'], bbox['north'])
     lon = random.uniform(bbox['west'], bbox['east'])
 
-    print(f'Latitude: {lat}, Longitude: {lon}')
+    bbox_coords = [(bbox['north'], bbox['west']), (bbox['south'], bbox['east'])]
+
+    m = folium.Map(location=(lat, lon), zoom_start=12)
+    folium.Rectangle(bbox_coords, color='red', fill_opacity=0.2).add_to(m)
+    m.save(f'../output/{location.lower()}/map.html')
+
     return lat, lon
 
 def run(lat, lon, location_name):
@@ -45,11 +55,7 @@ def run(lat, lon, location_name):
     size = '640x640' #i have tried increasing this, but it does not seem to make a difference
     fov = '120'
 
-    output_dir = f'../output/{location_name.lower()}'
-    if not os.path.exists(output_dir):
-        os.mkdir(output_dir)
-
-    file_name = os.path.join(output_dir, f'{location}.jpg')
+    file_name = os.path.join(f'../output/{location_name.lower()}', f'{location}.jpg')
     pano_size = '4096x2048'
     pano_fov = '360'
 
@@ -78,6 +84,12 @@ def run(lat, lon, location_name):
     cv2.imwrite(file_name, pano_stitch)
 
 if __name__ == '__main__':
+    if args.number is None:
+        args.number = 1
     for i in range(args.number):
+        print(f'Generating {location.title()} images... ({i+1}/{args.number})')
         lat, lon = get_coordinates(location)
         run(lat, lon, location)
+
+# if __name__ == '__main__':
+#     get_coordinates(location)
