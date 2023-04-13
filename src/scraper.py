@@ -22,9 +22,9 @@ def get_coordinates(location) -> dict:
     latitude = response_json["results"][0]["geometry"]["location"]["lat"]
     longitude = response_json["results"][0]["geometry"]["location"]["lng"]
 
-    output_dir = f'../output/{location.lower()}'
+    output_dir = os.path.normpath(f'output/{location.lower()}/')
     if not os.path.exists(output_dir):
-        os.mkdir(output_dir)
+        os.makedirs(output_dir)
 
     # Use the Haversine formula to calculate the latitude and longitude ranges that correspond to a 10-kilometer radius
     lat_range = 0.00904371733 * 10
@@ -44,18 +44,18 @@ def get_coordinates(location) -> dict:
 
     m = folium.Map(location=(lat, lon), zoom_start=12)
     folium.Rectangle(bbox_coords, color='red', fill_opacity=0.2).add_to(m)
-    m.save(f'../output/{location.lower()}/map.html')
+    m.save(os.path.normpath(f'{output_dir}/map.html'))
 
-    return lat, lon
+    return lat, lon, output_dir
 
-def run(lat, lon, location_name):
+def run(lat, lon, output_dir):
     url = 'https://maps.googleapis.com/maps/api/streetview'
 
     location = f'{lat},{lon}'
     size = '640x640' #i have tried increasing this, but it does not seem to make a difference
     fov = '120'
 
-    file_name = os.path.join(f'../output/{location_name.lower()}', f'{location}.jpg')
+    file_name = os.path.normpath(f'{output_dir}{location}.jpg')
     pano_size = '4096x2048'
     pano_fov = '360'
 
@@ -88,8 +88,8 @@ if __name__ == '__main__':
         args.number = 1
     for i in range(args.number):
         print(f'Generating {location.title()} images... ({i+1}/{args.number})')
-        lat, lon = get_coordinates(location)
-        run(lat, lon, location)
+        lat, lon, output_dir = get_coordinates(location)
+        run(lat, lon, output_dir)
 
 # if __name__ == '__main__':
 #     get_coordinates(location)

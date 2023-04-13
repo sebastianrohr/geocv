@@ -5,3 +5,4 @@ opencv-python-rolling
 requests
 urllib3
 folium
+opencv-python
