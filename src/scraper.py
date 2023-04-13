@@ -8,7 +8,7 @@ import random
 import folium
 from tqdm import tqdm
 
-api_key = 'AIzaSyChPNBO4t214jrW1eO1qTd8jlUYTLO3A_8'
+api_key = os.environ.get('GOOGLEAPI')
 parser = argparse.ArgumentParser(description='Geolocation using Google Street View and computer vision.')
 parser.add_argument('-l', '--location', type=str, required=True, 
                     help='Location to geolocate')
