@@ -7,8 +7,8 @@ GeoCV is a Python-based bot that plays the popular online game, Geoguessr, for y
 - Easy-to-use command line interface
 - Customizable settings for game difficulty and bot accuracy
 
-## 💻 Installation:
-1. Create a new virtual environment and install the required dependencies:
+## 💻 Installation
+Create a new virtual environment and install the required dependencies:
 ```
 python3 -m venv env
 source env/bin/activate
@@ -16,15 +16,16 @@ pip3 install -r requirements.txt
 ```
 
 ## 🎮 Usage
-To use the GeoCV pipeline, run the following command:
+To use the scrape output data, run the following command:
 
 ```
-python3 scraper.py -l paris -n 10
+python3 ./src/scraper.py -l paris -n 10
 ```
-Here, the `-l` flag specifies the location and `-n` specifies number of locations you want to geolocate,
+The `-l` flag specifies the location, `-n` specifies number of locations
 
-## 🤝 Contributing
-Contributions to GeoCV are welcome! If you have an idea for a new feature or want to improve the code, please submit a pull request with your changes.
-
-## 📄 License
-GeoCV is licensed under the MIT License.
+## 📝 Todo
+✅ Make Scraper
+❌ Get more API requests
+✅ Decide on cities - Moscow, Copenhagen, Madrid, London
+❌ Store the data
+❌ Build the Transformer CNN
