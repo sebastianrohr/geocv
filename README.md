@@ -27,5 +27,8 @@ The `-l` flag specifies the location, `-n` specifies number of locations
 ✅ Make Scraper
 ❌ Get more API requests
 ✅ Decide on cities - Moscow, Copenhagen, Madrid, London
+❌ Run the stuff
 ❌ Store the data
-❌ Build the Transformer CNN
+❌ Consider preprocessing the images
+❌ Build the transformer CNN
+❌ Visualize the attention
