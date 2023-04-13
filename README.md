@@ -19,7 +19,7 @@ pip3 install -r requirements.txt
 To use the GeoCV pipeline, run the following command:
 
 ```
-python3 main.py -l paris -n 10
+python3 scraper.py -l paris -n 10
 ```
 Here, the `-l` flag specifies the location and `-n` specifies number of locations you want to geolocate,
 
