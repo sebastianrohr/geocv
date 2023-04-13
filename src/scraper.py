@@ -6,6 +6,7 @@ import argparse
 import math
 import random
 import folium
+from tqdm import tqdm
 
 api_key = 'AIzaSyChPNBO4t214jrW1eO1qTd8jlUYTLO3A_8'
 parser = argparse.ArgumentParser(description='Geolocation using Google Street View and computer vision.')
@@ -23,8 +24,14 @@ def get_coordinates(location) -> dict:
     longitude = response_json["results"][0]["geometry"]["location"]["lng"]
 
     output_dir = os.path.normpath(f'output/{location.lower()}/')
+    output_dir_panos = os.path.normpath(f'{output_dir}/panos/')
+    output_dir_singles = os.path.normpath(f'{output_dir}/singles/')
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
+    if not os.path.exists(output_dir_panos):
+        os.makedirs(output_dir_panos)
+    if not os.path.exists(output_dir_singles):
+        os.makedirs(output_dir_singles)
 
     # Use the Haversine formula to calculate the latitude and longitude ranges that correspond to a 10-kilometer radius
     lat_range = 0.00904371733 * 10
@@ -50,25 +57,25 @@ def get_coordinates(location) -> dict:
 
 def run(lat, lon, output_dir):
     url = 'https://maps.googleapis.com/maps/api/streetview'
+    params = {'size': '640x640', 'location': f'{lat},{lon}', 'fov': '120', 'key': api_key}
 
     location = f'{lat},{lon}'
     size = '640x640' #i have tried increasing this, but it does not seem to make a difference
-    fov = '120'
+    fov = '90' 
 
-    file_name = os.path.normpath(f'{output_dir}{location}.jpg')
-    pano_size = '4096x2048'
-    pano_fov = '360'
+    file_name_pano = os.path.normpath(f'{output_dir}/panos/{location}.jpg')
 
-    pano_url = f'{url}?size={pano_size}&location={location}&fov={pano_fov}&key={api_key}'
-    pano_response = requests.get(pano_url)
+    # check for metadata
+    metadata_url = url + '/metadata?'
+    metadata_response = requests.get(metadata_url, params=params)
+    metadata = metadata_response.json()
+    if metadata['status'] != 'OK' or "Google" not in metadata['copyright']:
+        return -1
 
-    pano_image = np.asarray(bytearray(pano_response.content), dtype=np.uint8)
-    pano_image = cv2.imdecode(pano_image, cv2.IMREAD_COLOR)
-
-    num_rotations = 3
+    num_rotations = 4
     rotation_angle = 360 / num_rotations
 
-    pano_image = []
+    pano_images = []
     for i in range(num_rotations):
         heading = str(i * rotation_angle)
         params = {'size': size, 'location': location, 'fov': fov, 'heading': heading, 'key': api_key}
@@ -77,19 +84,29 @@ def run(lat, lon, output_dir):
 
         image = np.asarray(bytearray(response.content), dtype=np.uint8)
         image = cv2.imdecode(image, cv2.IMREAD_COLOR)
-        pano_image.append(image)
+        pano_images.append(image)
+        file_name_singles = os.path.normpath(f'{output_dir}/singles/{location}_{heading}.jpg')
+        cv2.imwrite(file_name_singles, image)
 
-    pano_stitch = np.concatenate((pano_image), axis=1)
+    
+    pano_stitch = np.concatenate((pano_images), axis=1)
 
-    cv2.imwrite(file_name, pano_stitch)
+    cv2.imwrite(file_name_pano, pano_stitch)
+
+    return 0
 
 if __name__ == '__main__':
     if args.number is None:
         args.number = 1
-    for i in range(args.number):
-        print(f'Generating {location.title()} images... ({i+1}/{args.number})')
+    i = 0
+    pbar = tqdm(total=args.number)
+    while i < args.number:
         lat, lon, output_dir = get_coordinates(location)
-        run(lat, lon, output_dir)
+        status = run(lat, lon, output_dir)
+        if status == -1:
+            continue
+        i += 1
+        pbar.update(1)
 
 # if __name__ == '__main__':
 #     get_coordinates(location)
