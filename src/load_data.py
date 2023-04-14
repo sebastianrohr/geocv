@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 
 def train_test_set_loader(path="output/", test_size=0.1, val_size=0.1 ,example=False, panos=False):
     # Set the path to your main directory containing the four subdirectories
-    main_directory = os.path.normpath("output/")
+    main_directory = os.path.normpath(path)
 
     # Get the subdirectory names
     subdirectories = os.listdir(main_directory)
