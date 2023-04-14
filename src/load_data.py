@@ -33,10 +33,6 @@ def train_test_set_loader(path="output/", test_size=0.1, val_size=0.1 ,example=F
                 image_paths.append(image_path)
                 labels.append(subdirectory)
     
-    # one hot encode labels
-    labels = pd.get_dummies(labels)
-
-
     # Split the image paths and labels into train, test, and validation sets
     test_val_size = test_size + val_size
     val_size = val_size / test_val_size
@@ -63,9 +59,9 @@ def train_test_set_loader(path="output/", test_size=0.1, val_size=0.1 ,example=F
         print("Label:", example_label)
 
     # Move the train images to a train directory
-    train_directory = "/train_directory"
+    train_directory = "./train_directory/"
     if os.path.exists(train_directory):
-        os.rmdir(train_directory)
+        shutil.rmtree(train_directory)
     os.makedirs(train_directory, exist_ok=True)
     for image_path, label in zip(train_image_paths, train_labels):
         label_directory = os.path.join(train_directory, label)
@@ -74,9 +70,9 @@ def train_test_set_loader(path="output/", test_size=0.1, val_size=0.1 ,example=F
         shutil.copy(image_path, os.path.join(label_directory, image_filename))
 
     # Move the test images to a test directory
-    test_directory = "/test_directory"
+    test_directory = "./test_directory/"
     if os.path.exists(test_directory):
-        os.rmdir(test_directory)
+        shutil.rmtree(test_directory)
     os.makedirs(test_directory, exist_ok=True)
     for image_path, label in zip(test_image_paths, test_labels):
         label_directory = os.path.join(test_directory, label)
@@ -85,9 +81,9 @@ def train_test_set_loader(path="output/", test_size=0.1, val_size=0.1 ,example=F
         shutil.copy(image_path, os.path.join(label_directory, image_filename))
 
     # Move the validation images to a validation directory
-    val_directory = "/val_directory"
+    val_directory = "./val_directory/"
     if os.path.exists(val_directory):
-        os.rmdir(val_directory)
+        shutil.rmtree(val_directory)
     os.makedirs(val_directory, exist_ok=True)
     for image_path, label in zip(val_image_paths, val_labels):
         label_directory = os.path.join(val_directory, label)

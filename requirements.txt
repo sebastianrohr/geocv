@@ -7,3 +7,7 @@ urllib3
 folium
 opencv-python
 tqdm
+torch
+torchvision
+scikit-learn
+pandas
