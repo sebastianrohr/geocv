@@ -11,3 +11,7 @@ torch
 torchvision
 scikit-learn
 pandas
+matplotlib
+jupyter
+torchsummary
+seaborn
