@@ -15,3 +15,5 @@ matplotlib
 jupyter
 torchsummary
 seaborn
+transformers
+sklearn
