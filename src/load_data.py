@@ -12,6 +12,7 @@ def train_test_set_loader(path="output/", test_size=0.1, val_size=0.1 ,example=F
     # Get the subdirectory names
     subdirectories = os.listdir(main_directory)
 
+
     # Create empty lists to store image paths and labels
     image_paths = []
     labels = []
@@ -19,19 +20,41 @@ def train_test_set_loader(path="output/", test_size=0.1, val_size=0.1 ,example=F
     # Loop through each subdirectory
     for subdirectory in subdirectories:
         subdirectory_path = os.path.join(main_directory, subdirectory)
-        if panos:
-            img_path = os.path.join(subdirectory_path, "panos")
+        # check if map.html is in subdirectory
+        if os.path.isfile(os.path.join(subdirectory_path, "map.html")):
+                
+            if panos:
+                img_path = os.path.join(subdirectory_path, "panos")
+            else:
+                img_path = os.path.join(subdirectory_path, "singles")            
+            if os.path.isdir(img_path):
+                # Get all image file names within the subdirectory
+                image_files = os.listdir(img_path)
+                # Loop through each image file
+                for image_file in image_files:
+                    image_path = os.path.join(img_path, image_file)
+                    # Append the image path and its corresponding label (subdirectory name) to the lists
+                    image_paths.append(image_path)
+                    labels.append(subdirectory)
+        
         else:
-            img_path = os.path.join(subdirectory_path, "singles")            
-        if os.path.isdir(img_path):
-            # Get all image file names within the subdirectory
-            image_files = os.listdir(img_path)
-            # Loop through each image file
-            for image_file in image_files:
-                image_path = os.path.join(img_path, image_file)
-                # Append the image path and its corresponding label (subdirectory name) to the lists
-                image_paths.append(image_path)
-                labels.append(subdirectory)
+            # get subdirectory names in subdirectory
+            subsubdirectories = os.listdir(subdirectory_path)
+            for subsubdirectory in subsubdirectories:
+                subsubdirectory_path = os.path.join(subdirectory_path, subsubdirectory)
+                if panos:
+                    img_path = os.path.join(subsubdirectory_path, "panos")
+                else:
+                    img_path = os.path.join(subsubdirectory_path, "singles")            
+                if os.path.isdir(img_path):
+                    # Get all image file names within the subdirectory
+                    image_files = os.listdir(img_path)
+                    # Loop through each image file
+                    for image_file in image_files:
+                        image_path = os.path.join(img_path, image_file)
+                        # Append the image path and its corresponding label (subdirectory name) to the lists
+                        image_paths.append(image_path)
+                        labels.append(subdirectory)
     
     # Split the image paths and labels into train, test, and validation sets
     test_val_size = test_size + val_size
@@ -58,8 +81,9 @@ def train_test_set_loader(path="output/", test_size=0.1, val_size=0.1 ,example=F
         print("Image path:", example_image_path)
         print("Label:", example_label)
 
+
     # Move the train images to a train directory
-    train_directory = "./train/"
+    train_directory = "data/train/"
     if os.path.exists(train_directory):
         shutil.rmtree(train_directory)
     os.makedirs(train_directory, exist_ok=True)
@@ -70,7 +94,7 @@ def train_test_set_loader(path="output/", test_size=0.1, val_size=0.1 ,example=F
         shutil.copy(image_path, os.path.join(label_directory, image_filename))
 
     # Move the test images to a test directory
-    test_directory = "./test/"
+    test_directory = "data/test/"
     if os.path.exists(test_directory):
         shutil.rmtree(test_directory)
     os.makedirs(test_directory, exist_ok=True)
@@ -81,7 +105,7 @@ def train_test_set_loader(path="output/", test_size=0.1, val_size=0.1 ,example=F
         shutil.copy(image_path, os.path.join(label_directory, image_filename))
 
     # Move the validation images to a validation directory
-    val_directory = "./val/"
+    val_directory = "data/val/"
     if os.path.exists(val_directory):
         shutil.rmtree(val_directory)
     os.makedirs(val_directory, exist_ok=True)
