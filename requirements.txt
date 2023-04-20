@@ -16,3 +16,4 @@ jupyter
 torchsummary
 seaborn
 transformers
+wandb
