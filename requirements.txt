@@ -17,3 +17,5 @@ torchsummary
 seaborn
 transformers
 wandb
+kaggle
+datasets
