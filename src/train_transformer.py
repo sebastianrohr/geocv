@@ -50,6 +50,7 @@ def arg_parser():
     parser.add_argument('--batch_size', type=int, default=64)
     parser.add_argument('--epochs', type=int, default=10)
     parser.add_argument('--lr', type=float, default=0.001)
+    parser.add_argument('--output_dir', type=str, default="vit-base-cities")
     args = parser.parse_args()
     return args
 
@@ -74,6 +75,7 @@ if __name__ == '__main__':
     batch_size = args.batch_size
     epochs = args.epochs
     lr = args.lr
+    output_dir = args.output_dir
 
     # train_test_set_loader(test_size=0.25, val_size=0.25, panos=panos)
 
@@ -92,8 +94,9 @@ if __name__ == '__main__':
 
 
 
+
     training_args = TrainingArguments(
-        output_dir="./vit-base-cities",
+        output_dir=output_dir,
         per_device_train_batch_size=batch_size,
         evaluation_strategy="steps",
         num_train_epochs=epochs,
@@ -106,6 +109,7 @@ if __name__ == '__main__':
         remove_unused_columns=False,
         push_to_hub=False,
         report_to='wandb',
+        run_name=f"lr_{lr}_batch_{batch_size}_epochs_{epochs}_output_dir_{output_dir}",
         load_best_model_at_end=True,
     )
 
