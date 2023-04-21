@@ -1,4 +1,5 @@
 from kaggle.api.kaggle_api_extended import KaggleApi
+import os
 
 # set the API key for authentication
 api = KaggleApi()
@@ -8,7 +9,10 @@ api.authenticate()
 user = "sebastianrohr"
 dataset_name = 'geocv-dataset'
 download_url = user + '/' + dataset_name
-download_path = 'output'
+# get cwd with os
+cwd = os.getcwd()
+# set download path
+download_path = os.path.join(cwd, 'output')
 
 # download the dataset
 api.dataset_download_files(download_url, path=download_path, quiet=False, force=True, unzip=True)
