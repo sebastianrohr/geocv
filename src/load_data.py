@@ -1,5 +1,4 @@
 import os
-import random
 import pandas as pd
 import shutil
 from PIL import Image

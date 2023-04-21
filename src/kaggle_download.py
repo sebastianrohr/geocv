@@ -1,5 +1,3 @@
-import os
-import zipfile
 from kaggle.api.kaggle_api_extended import KaggleApi
 
 # set the API key for authentication
