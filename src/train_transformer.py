@@ -4,6 +4,8 @@ from torch.utils.data import DataLoader
 from torchvision import transforms
 from torchvision.datasets import ImageFolder
 
+from argparse import ArgumentParser
+
 import wandb
 
 import numpy as np
@@ -43,86 +45,97 @@ metric = evaluate.load("accuracy")
 def compute_metrics(p):
     return metric.compute(predictions=np.argmax(p.predictions, axis=1), references=p.label_ids)
 
-
-# train_test_set_loader(test_size=0.25, val_size=0.25, panos=panos)
-
-# Location of data
-datadir = 'data'
-
-# Change to fit hardware
-batch_size = 15
-
-# Whether to train on a gpu
-train_on_gpu = cuda.is_available()
-print(f'Train on gpu: {train_on_gpu}')
-
-# Number of gpus
-if train_on_gpu:
-    gpu_count = cuda.device_count()
-    print(f'{gpu_count} gpus detected.')
-    if gpu_count > 1:
-        multi_gpu = True
-    else:
-        multi_gpu = False
+def arg_parser():
+    parser = ArgumentParser()
+    parser.add_argument('--batch_size', type=int, default=64)
+    parser.add_argument('--epochs', type=int, default=10)
+    parser.add_argument('--lr', type=float, default=0.001)
+    args = parser.parse_args()
+    return args
 
 
-# Empty lists
-categories = []
-img_categories = []
-n_train = []
-n_valid = []
-n_test = []
-hs = []
-ws = []
+def data_collection():
+    
+    # Location of data
+    datadir = 'data'
+
+    # Datasets from each folder
+    data = load_dataset("imagefolder", data_dir=datadir)
+
+    prepared_data = data.with_transform(transform)
+
+    return prepared_data
+
+if __name__ == '__main__':
+
+    # read args
+    args = arg_parser()
+
+    batch_size = args.batch_size
+    epochs = args.epochs
+    lr = args.lr
+
+    # train_test_set_loader(test_size=0.25, val_size=0.25, panos=panos)
+
+    # Whether to train on a gpu
+    train_on_gpu = cuda.is_available()
+    print(f'Train on gpu: {train_on_gpu}')
+
+    # Number of gpus
+    if train_on_gpu:
+        gpu_count = cuda.device_count()
+        print(f'{gpu_count} gpus detected.')
+        if gpu_count > 1:
+            multi_gpu = True
+        else:
+            multi_gpu = False
 
 
-# Datasets from each folder
-data = load_dataset("imagefolder", data_dir=datadir)
 
-prepared_data = data.with_transform(transform)
+    training_args = TrainingArguments(
+        output_dir="./vit-base-cities",
+        per_device_train_batch_size=batch_size,
+        evaluation_strategy="steps",
+        num_train_epochs=epochs,
+        fp16=True,
+        save_steps=100,
+        eval_steps=100,
+        logging_steps=10,
+        learning_rate=lr,
+        save_total_limit=2,
+        remove_unused_columns=False,
+        push_to_hub=False,
+        report_to='wandb',
+        load_best_model_at_end=True,
+    )
 
-training_args = TrainingArguments(
-    output_dir="./vit-base-cities",
-    per_device_train_batch_size=16,
-    evaluation_strategy="steps",
-    num_train_epochs=4,
-    fp16=False,
-    save_steps=100,
-    eval_steps=100,
-    logging_steps=10,
-    learning_rate=2e-4,
-    save_total_limit=2,
-    remove_unused_columns=False,
-    push_to_hub=False,
-    report_to='wandb',
-    load_best_model_at_end=True,
-)
 
-labels = data["test"].features['label'].names
+    prepared_data = data_collection()
+    labels = prepared_data["train"].features['label'].names
 
-model = ViTForImageClassification.from_pretrained(
-            model_name_or_path,
-            num_labels=len(labels),
-            id2label={str(i): c for i, c in enumerate(labels)},
-            label2id={c: str(i) for i, c in enumerate(labels)}
-        )
+    model = ViTForImageClassification.from_pretrained(
+                model_name_or_path,
+                num_labels=len(labels),
+                id2label={str(i): c for i, c in enumerate(labels)},
+                label2id={c: str(i) for i, c in enumerate(labels)}
+            )
 
-trainer = Trainer(
-    model=model,
-    args=training_args,
-    data_collator=collate_fn,
-    compute_metrics=compute_metrics,
-    train_dataset=prepared_data["train"],
-    eval_dataset=prepared_data["validation"],
-    tokenizer=feature_extractor,
-)
+    trainer = Trainer(
+        model=model,
+        args=training_args,
+        data_collator=collate_fn,
+        compute_metrics=compute_metrics,
+        train_dataset=prepared_data["train"],
+        eval_dataset=prepared_data["validation"],
+        tokenizer=feature_extractor,
+    )
 
-train_results = trainer.train()
-trainer.save_model()
-trainer.log_metrics("train", train_results.metrics)
-trainer.save_metrics("train", train_results.metrics)
-trainer.save_state()
+    train_results = trainer.train()
+    trainer.save_model()
+    trainer.log_metrics("train", train_results.metrics)
+    trainer.save_metrics("train", train_results.metrics)
+    trainer.save_state()
 
-metrics = trainer.evaluate(prepared_data["test"])
-trainer.log_metrics("eval", metrics)
-trainer.save_metrics("eval", metrics)
+    metrics = trainer.evaluate(prepared_data["test"])
+    trainer.log_metrics("eval", metrics)
+    trainer.save_metrics("eval", metrics)
