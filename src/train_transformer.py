@@ -77,7 +77,7 @@ if __name__ == '__main__':
     lr = args.lr
     output_dir = args.output_dir
 
-    # train_test_set_loader(test_size=0.25, val_size=0.25, panos=panos)
+    train_test_set_loader(test_size=0.25, val_size=0.25, panos=panos)
 
     # Whether to train on a gpu
     train_on_gpu = cuda.is_available()
