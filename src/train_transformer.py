@@ -51,6 +51,9 @@ def arg_parser():
     parser.add_argument('--epochs', type=int, default=10)
     parser.add_argument('--lr', type=float, default=0.001)
     parser.add_argument('--output_dir', type=str, default="vit-base-cities")
+    parser.add_argument('--data_load', action='store_true')
+    parser.add_argument('--no-data_load', dest='data_load', action='store_false')
+    parser.set_defaults(data_load=True)
     args = parser.parse_args()
     return args
 
@@ -76,8 +79,9 @@ if __name__ == '__main__':
     epochs = args.epochs
     lr = args.lr
     output_dir = args.output_dir
-
-    train_test_set_loader(test_size=0.25, val_size=0.25, panos=panos)
+    data_load = args.data_load
+    if data_load:
+        train_test_set_loader(test_size=0.25, val_size=0.25, panos=panos)
 
     # Whether to train on a gpu
     train_on_gpu = cuda.is_available()
