@@ -36,6 +36,6 @@ The `-l` flag specifies the location, `-n` specifies number of locations
 
 ❌ Consider preprocessing the images
 
-❌ Build the transformer CNN
+✅ Build the transformer
 
-❌ Visualize the attention
+✅ Visualize the attention
