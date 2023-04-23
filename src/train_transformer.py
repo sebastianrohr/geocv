@@ -144,6 +144,10 @@ if __name__ == '__main__':
     trainer.save_metrics("train", train_results.metrics)
     trainer.save_state()
 
-    metrics = trainer.evaluate(prepared_data["test"])
+    metrics = trainer.evaluate(prepared_data["validation"])
     trainer.log_metrics("eval", metrics)
     trainer.save_metrics("eval", metrics)
+
+    test_metrics = trainer.predict(prepared_data["test"])
+    trainer.log_metrics("test", test_metrics.metrics)
+    trainer.save_metrics("test", test_metrics.metrics)
