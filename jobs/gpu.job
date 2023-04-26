@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH --job-name=simple        # Job name
-#SBATCH --output=logs/%j.out     # Name of output file (%j expands to jobId)
+#SBATCH --output=j.out     # Name of output file (%j expands to jobId)
 #SBATCH --cpus-per-task=1        # Schedule one core
 #SBATCH --time=00:59:00          # Run time (hh:mm:ss) - run for one hour max
 #SBATCH --gres=gpu:1             # Schedule a GPU, or more with gpu:2 etc
@@ -15,4 +15,4 @@ module load CUDA/10.2.89-GCC-8.3.0
 source venv/bin/activate
 
 # Print out the hostname of the node the job is running on
-python train_transformer.py --batch_size=32 --epochs=5 --lr=0.0001 --output_dir="vit-base-cities"
+python src/train_transformer.py --batch_size=16 --epochs=5 --lr=0.0001 --output_dir="vit-base-cities"

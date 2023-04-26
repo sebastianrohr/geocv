@@ -1,0 +1,381 @@
+Already using interpreter /opt/itu/easybuild/software/Python/3.7.4-GCCcore-8.3.0/bin/python
+Using base prefix '/opt/itu/easybuild/software/Python/3.7.4-GCCcore-8.3.0'
+New python executable in /home/jthr/repos/geocv/venv/bin/python
+Installing setuptools, pip, wheel...
+done.
+Collecting charset-normalizer (from -r requirements.txt (line 1))
+  Downloading charset_normalizer-3.1.0-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (171 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 171.0/171.0 kB 280.7 kB/s eta 0:00:00
+Collecting idna (from -r requirements.txt (line 2))
+  Downloading idna-3.4-py3-none-any.whl (61 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.5/61.5 kB 208.5 kB/s eta 0:00:00
+Collecting numpy (from -r requirements.txt (line 3))
+  Downloading numpy-1.21.6-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (15.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 15.7/15.7 MB 22.6 MB/s eta 0:00:00
+Collecting opencv-python-rolling (from -r requirements.txt (line 4))
+  Downloading opencv_python_rolling-5.0.0.20221015-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (63.4 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.4/63.4 MB 6.1 MB/s eta 0:00:00
+Collecting requests (from -r requirements.txt (line 5))
+  Downloading requests-2.28.2-py3-none-any.whl (62 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.8/62.8 kB 240.5 kB/s eta 0:00:00
+Collecting urllib3 (from -r requirements.txt (line 6))
+  Using cached urllib3-1.26.15-py2.py3-none-any.whl (140 kB)
+Collecting folium (from -r requirements.txt (line 7))
+  Downloading folium-0.14.0-py2.py3-none-any.whl (102 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 102.3/102.3 kB 378.0 kB/s eta 0:00:00
+Collecting opencv-python (from -r requirements.txt (line 8))
+  Downloading opencv_python-4.7.0.72-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (61.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.8/61.8 MB 12.8 MB/s eta 0:00:00
+Collecting tqdm (from -r requirements.txt (line 9))
+  Downloading tqdm-4.65.0-py3-none-any.whl (77 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 77.1/77.1 kB 312.1 kB/s eta 0:00:00
+Collecting torch (from -r requirements.txt (line 10))
+  Downloading torch-1.13.1-cp37-cp37m-manylinux1_x86_64.whl (887.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 887.5/887.5 MB 2.6 MB/s eta 0:00:00
+Collecting torchvision (from -r requirements.txt (line 11))
+  Downloading torchvision-0.14.1-cp37-cp37m-manylinux1_x86_64.whl (24.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 24.2/24.2 MB 13.8 MB/s eta 0:00:00
+Collecting scikit-learn (from -r requirements.txt (line 12))
+  Downloading scikit_learn-1.0.2-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (24.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 24.8/24.8 MB 17.4 MB/s eta 0:00:00
+Collecting pandas (from -r requirements.txt (line 13))
+  Downloading pandas-1.3.5-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.3/11.3 MB 19.2 MB/s eta 0:00:00
+Collecting matplotlib (from -r requirements.txt (line 14))
+  Downloading matplotlib-3.5.3-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.whl (11.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.2/11.2 MB 32.4 MB/s eta 0:00:00
+Collecting jupyter (from -r requirements.txt (line 15))
+  Downloading jupyter-1.0.0-py2.py3-none-any.whl (2.7 kB)
+Collecting torchsummary (from -r requirements.txt (line 16))
+  Downloading torchsummary-1.5.1-py3-none-any.whl (2.8 kB)
+Collecting seaborn (from -r requirements.txt (line 17))
+  Downloading seaborn-0.12.2-py3-none-any.whl (293 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 293.3/293.3 kB 1.1 MB/s eta 0:00:00
+Collecting transformers (from -r requirements.txt (line 18))
+  Downloading transformers-4.28.1-py3-none-any.whl (7.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.0/7.0 MB 15.9 MB/s eta 0:00:00
+Collecting wandb (from -r requirements.txt (line 19))
+  Using cached wandb-0.15.0-py3-none-any.whl (2.0 MB)
+Collecting kaggle (from -r requirements.txt (line 20))
+  Downloading kaggle-1.5.13.tar.gz (63 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.3/63.3 kB 151.4 kB/s eta 0:00:00
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting datasets (from -r requirements.txt (line 21))
+  Downloading datasets-2.11.0-py3-none-any.whl (468 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 468.7/468.7 kB 1.6 MB/s eta 0:00:00
+Collecting evaluate (from -r requirements.txt (line 22))
+  Downloading evaluate-0.4.0-py3-none-any.whl (81 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 81.4/81.4 kB 190.3 kB/s eta 0:00:00
+Collecting certifi>=2017.4.17 (from requests->-r requirements.txt (line 5))
+  Downloading certifi-2022.12.7-py3-none-any.whl (155 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 155.3/155.3 kB 78.6 kB/s eta 0:00:00
+Collecting branca>=0.6.0 (from folium->-r requirements.txt (line 7))
+  Downloading branca-0.6.0-py3-none-any.whl (24 kB)
+Collecting jinja2>=2.9 (from folium->-r requirements.txt (line 7))
+  Downloading Jinja2-3.1.2-py3-none-any.whl (133 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.1/133.1 kB 400.0 kB/s eta 0:00:00
+Collecting typing-extensions (from torch->-r requirements.txt (line 10))
+  Downloading typing_extensions-4.5.0-py3-none-any.whl (27 kB)
+Collecting nvidia-cuda-runtime-cu11==11.7.99 (from torch->-r requirements.txt (line 10))
+  Downloading nvidia_cuda_runtime_cu11-11.7.99-py3-none-manylinux1_x86_64.whl (849 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 849.3/849.3 kB 2.8 MB/s eta 0:00:00
+Collecting nvidia-cudnn-cu11==8.5.0.96 (from torch->-r requirements.txt (line 10))
+  Downloading nvidia_cudnn_cu11-8.5.0.96-2-py3-none-manylinux1_x86_64.whl (557.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 557.1/557.1 MB 4.3 MB/s eta 0:00:00
+Collecting nvidia-cublas-cu11==11.10.3.66 (from torch->-r requirements.txt (line 10))
+  Downloading nvidia_cublas_cu11-11.10.3.66-py3-none-manylinux1_x86_64.whl (317.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 317.1/317.1 MB 6.3 MB/s eta 0:00:00
+Collecting nvidia-cuda-nvrtc-cu11==11.7.99 (from torch->-r requirements.txt (line 10))
+  Downloading nvidia_cuda_nvrtc_cu11-11.7.99-2-py3-none-manylinux1_x86_64.whl (21.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.0/21.0 MB 16.8 MB/s eta 0:00:00
+Requirement already satisfied: setuptools in ./venv/lib/python3.7/site-packages (from nvidia-cublas-cu11==11.10.3.66->torch->-r requirements.txt (line 10)) (67.7.2)
+Requirement already satisfied: wheel in ./venv/lib/python3.7/site-packages (from nvidia-cublas-cu11==11.10.3.66->torch->-r requirements.txt (line 10)) (0.40.0)
+Collecting pillow!=8.3.*,>=5.3.0 (from torchvision->-r requirements.txt (line 11))
+  Downloading Pillow-9.5.0-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 9.9 MB/s eta 0:00:00
+Collecting scipy>=1.1.0 (from scikit-learn->-r requirements.txt (line 12))
+  Downloading scipy-1.7.3-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (38.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 38.1/38.1 MB 8.9 MB/s eta 0:00:00
+Collecting joblib>=0.11 (from scikit-learn->-r requirements.txt (line 12))
+  Downloading joblib-1.2.0-py3-none-any.whl (297 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 298.0/298.0 kB 1.3 MB/s eta 0:00:00
+Collecting threadpoolctl>=2.0.0 (from scikit-learn->-r requirements.txt (line 12))
+  Downloading threadpoolctl-3.1.0-py3-none-any.whl (14 kB)
+Collecting python-dateutil>=2.7.3 (from pandas->-r requirements.txt (line 13))
+  Downloading python_dateutil-2.8.2-py2.py3-none-any.whl (247 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 247.7/247.7 kB 1.3 MB/s eta 0:00:00
+Collecting pytz>=2017.3 (from pandas->-r requirements.txt (line 13))
+  Downloading pytz-2023.3-py2.py3-none-any.whl (502 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 502.3/502.3 kB 2.7 MB/s eta 0:00:00
+Collecting cycler>=0.10 (from matplotlib->-r requirements.txt (line 14))
+  Downloading cycler-0.11.0-py3-none-any.whl (6.4 kB)
+Collecting fonttools>=4.22.0 (from matplotlib->-r requirements.txt (line 14))
+  Downloading fonttools-4.38.0-py3-none-any.whl (965 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 965.4/965.4 kB 1.1 MB/s eta 0:00:00
+Collecting kiwisolver>=1.0.1 (from matplotlib->-r requirements.txt (line 14))
+  Downloading kiwisolver-1.4.4-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.whl (1.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 2.1 MB/s eta 0:00:00
+Collecting packaging>=20.0 (from matplotlib->-r requirements.txt (line 14))
+  Downloading packaging-23.1-py3-none-any.whl (48 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 48.9/48.9 kB 175.7 kB/s eta 0:00:00
+Collecting pyparsing>=2.2.1 (from matplotlib->-r requirements.txt (line 14))
+  Downloading pyparsing-3.0.9-py3-none-any.whl (98 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98.3/98.3 kB 330.1 kB/s eta 0:00:00
+Collecting notebook (from jupyter->-r requirements.txt (line 15))
+  Downloading notebook-6.5.4-py3-none-any.whl (529 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 529.8/529.8 kB 580.6 kB/s eta 0:00:00
+Collecting qtconsole (from jupyter->-r requirements.txt (line 15))
+  Downloading qtconsole-5.4.2-py3-none-any.whl (121 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 121.2/121.2 kB 389.7 kB/s eta 0:00:00
+Collecting jupyter-console (from jupyter->-r requirements.txt (line 15))
+  Downloading jupyter_console-6.6.3-py3-none-any.whl (24 kB)
+Collecting nbconvert (from jupyter->-r requirements.txt (line 15))
+  Downloading nbconvert-7.3.1-py3-none-any.whl (284 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 284.1/284.1 kB 1.2 MB/s eta 0:00:00
+Collecting ipykernel (from jupyter->-r requirements.txt (line 15))
+  Downloading ipykernel-6.16.2-py3-none-any.whl (138 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 138.5/138.5 kB 357.2 kB/s eta 0:00:00
+Collecting ipywidgets (from jupyter->-r requirements.txt (line 15))
+  Downloading ipywidgets-8.0.6-py3-none-any.whl (138 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 138.3/138.3 kB 600.1 kB/s eta 0:00:00
+Collecting filelock (from transformers->-r requirements.txt (line 18))
+  Downloading filelock-3.12.0-py3-none-any.whl (10 kB)
+Collecting huggingface-hub<1.0,>=0.11.0 (from transformers->-r requirements.txt (line 18))
+  Downloading huggingface_hub-0.14.1-py3-none-any.whl (224 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 224.5/224.5 kB 779.1 kB/s eta 0:00:00
+Collecting pyyaml>=5.1 (from transformers->-r requirements.txt (line 18))
+  Downloading PyYAML-6.0-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (596 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 596.3/596.3 kB 2.7 MB/s eta 0:00:00
+Collecting regex!=2019.12.17 (from transformers->-r requirements.txt (line 18))
+  Downloading regex-2022.10.31-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (757 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 757.1/757.1 kB 4.0 MB/s eta 0:00:00
+Collecting tokenizers!=0.11.3,<0.14,>=0.11.1 (from transformers->-r requirements.txt (line 18))
+  Downloading tokenizers-0.13.3-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (7.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.8/7.8 MB 21.8 MB/s eta 0:00:00
+Collecting importlib-metadata (from transformers->-r requirements.txt (line 18))
+  Downloading importlib_metadata-6.6.0-py3-none-any.whl (22 kB)
+Collecting Click!=8.0.0,>=7.0 (from wandb->-r requirements.txt (line 19))
+  Downloading click-8.1.3-py3-none-any.whl (96 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.6/96.6 kB 310.6 kB/s eta 0:00:00
+Collecting GitPython!=3.1.29,>=1.0.0 (from wandb->-r requirements.txt (line 19))
+  Downloading GitPython-3.1.31-py3-none-any.whl (184 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 184.3/184.3 kB 576.6 kB/s eta 0:00:00
+Collecting psutil>=5.0.0 (from wandb->-r requirements.txt (line 19))
+  Using cached psutil-5.9.5-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (282 kB)
+Collecting sentry-sdk>=1.0.0 (from wandb->-r requirements.txt (line 19))
+  Downloading sentry_sdk-1.21.0-py2.py3-none-any.whl (199 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 199.5/199.5 kB 910.6 kB/s eta 0:00:00
+Collecting docker-pycreds>=0.4.0 (from wandb->-r requirements.txt (line 19))
+  Using cached docker_pycreds-0.4.0-py2.py3-none-any.whl (9.0 kB)
+Collecting pathtools (from wandb->-r requirements.txt (line 19))
+  Using cached pathtools-0.1.2.tar.gz (11 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting setproctitle (from wandb->-r requirements.txt (line 19))
+  Downloading setproctitle-1.3.2-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (30 kB)
+Collecting appdirs>=1.4.3 (from wandb->-r requirements.txt (line 19))
+  Using cached appdirs-1.4.4-py2.py3-none-any.whl (9.6 kB)
+Collecting protobuf!=4.21.0,<5,>=3.12.0 (from wandb->-r requirements.txt (line 19))
+  Downloading protobuf-4.22.3-cp37-abi3-manylinux2014_x86_64.whl (302 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 302.4/302.4 kB 1.5 MB/s eta 0:00:00
+Collecting six>=1.10 (from kaggle->-r requirements.txt (line 20))
+  Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+Collecting python-slugify (from kaggle->-r requirements.txt (line 20))
+  Downloading python_slugify-8.0.1-py2.py3-none-any.whl (9.7 kB)
+Collecting pyarrow>=8.0.0 (from datasets->-r requirements.txt (line 21))
+  Downloading pyarrow-11.0.0-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (35.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 35.1/35.1 MB 20.5 MB/s eta 0:00:00
+Collecting dill<0.3.7,>=0.3.0 (from datasets->-r requirements.txt (line 21))
+  Downloading dill-0.3.6-py3-none-any.whl (110 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 110.5/110.5 kB 275.5 kB/s eta 0:00:00
+Collecting xxhash (from datasets->-r requirements.txt (line 21))
+  Downloading xxhash-3.2.0-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (213 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 213.1/213.1 kB 750.7 kB/s eta 0:00:00
+Collecting multiprocess (from datasets->-r requirements.txt (line 21))
+  Downloading multiprocess-0.70.14-py37-none-any.whl (115 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 115.7/115.7 kB 434.8 kB/s eta 0:00:00
+Collecting fsspec[http]>=2021.11.1 (from datasets->-r requirements.txt (line 21))
+  Downloading fsspec-2023.1.0-py3-none-any.whl (143 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.0/143.0 kB 439.3 kB/s eta 0:00:00
+Collecting aiohttp (from datasets->-r requirements.txt (line 21))
+  Downloading aiohttp-3.8.4-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (948 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 948.1/948.1 kB 3.8 MB/s eta 0:00:00
+Collecting responses<0.19 (from datasets->-r requirements.txt (line 21))
+  Downloading responses-0.18.0-py3-none-any.whl (38 kB)
+Collecting attrs>=17.3.0 (from aiohttp->datasets->-r requirements.txt (line 21))
+  Downloading attrs-23.1.0-py3-none-any.whl (61 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.2/61.2 kB 109.4 kB/s eta 0:00:00
+Collecting multidict<7.0,>=4.5 (from aiohttp->datasets->-r requirements.txt (line 21))
+  Downloading multidict-6.0.4-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (94 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 94.8/94.8 kB 149.9 kB/s eta 0:00:00
+Collecting async-timeout<5.0,>=4.0.0a3 (from aiohttp->datasets->-r requirements.txt (line 21))
+  Downloading async_timeout-4.0.2-py3-none-any.whl (5.8 kB)
+Collecting yarl<2.0,>=1.0 (from aiohttp->datasets->-r requirements.txt (line 21))
+  Downloading yarl-1.9.2-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (236 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 236.2/236.2 kB 416.1 kB/s eta 0:00:00
+Collecting frozenlist>=1.1.1 (from aiohttp->datasets->-r requirements.txt (line 21))
+  Downloading frozenlist-1.3.3-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (148 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 148.0/148.0 kB 364.2 kB/s eta 0:00:00
+Collecting aiosignal>=1.1.2 (from aiohttp->datasets->-r requirements.txt (line 21))
+  Downloading aiosignal-1.3.1-py3-none-any.whl (7.6 kB)
+Collecting asynctest==0.13.0 (from aiohttp->datasets->-r requirements.txt (line 21))
+  Downloading asynctest-0.13.0-py3-none-any.whl (26 kB)
+Collecting gitdb<5,>=4.0.1 (from GitPython!=3.1.29,>=1.0.0->wandb->-r requirements.txt (line 19))
+  Downloading gitdb-4.0.10-py3-none-any.whl (62 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 201.3 kB/s eta 0:00:00
+Collecting MarkupSafe>=2.0 (from jinja2>=2.9->folium->-r requirements.txt (line 7))
+  Downloading MarkupSafe-2.1.2-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
+Collecting zipp>=0.5 (from importlib-metadata->transformers->-r requirements.txt (line 18))
+  Downloading zipp-3.15.0-py3-none-any.whl (6.8 kB)
+Collecting debugpy>=1.0 (from ipykernel->jupyter->-r requirements.txt (line 15))
+  Downloading debugpy-1.6.7-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.9 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.9/2.9 MB 9.1 MB/s eta 0:00:00
+Collecting ipython>=7.23.1 (from ipykernel->jupyter->-r requirements.txt (line 15))
+  Downloading ipython-7.34.0-py3-none-any.whl (793 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 793.8/793.8 kB 3.6 MB/s eta 0:00:00
+Collecting jupyter-client>=6.1.12 (from ipykernel->jupyter->-r requirements.txt (line 15))
+  Downloading jupyter_client-7.4.9-py3-none-any.whl (133 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.5/133.5 kB 513.1 kB/s eta 0:00:00
+Collecting matplotlib-inline>=0.1 (from ipykernel->jupyter->-r requirements.txt (line 15))
+  Downloading matplotlib_inline-0.1.6-py3-none-any.whl (9.4 kB)
+Collecting nest-asyncio (from ipykernel->jupyter->-r requirements.txt (line 15))
+  Downloading nest_asyncio-1.5.6-py3-none-any.whl (5.2 kB)
+Collecting pyzmq>=17 (from ipykernel->jupyter->-r requirements.txt (line 15))
+  Downloading pyzmq-25.0.2-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.whl (1.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 3.9 MB/s eta 0:00:00
+Collecting tornado>=6.1 (from ipykernel->jupyter->-r requirements.txt (line 15))
+  Downloading tornado-6.2-cp37-abi3-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (423 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 424.0/424.0 kB 2.2 MB/s eta 0:00:00
+Collecting traitlets>=5.1.0 (from ipykernel->jupyter->-r requirements.txt (line 15))
+  Downloading traitlets-5.9.0-py3-none-any.whl (117 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 117.4/117.4 kB 483.2 kB/s eta 0:00:00
+Collecting widgetsnbextension~=4.0.7 (from ipywidgets->jupyter->-r requirements.txt (line 15))
+  Downloading widgetsnbextension-4.0.7-py3-none-any.whl (2.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 11.2 MB/s eta 0:00:00
+Collecting jupyterlab-widgets~=3.0.7 (from ipywidgets->jupyter->-r requirements.txt (line 15))
+  Downloading jupyterlab_widgets-3.0.7-py3-none-any.whl (198 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 198.2/198.2 kB 634.0 kB/s eta 0:00:00
+Collecting jupyter-core!=5.0.*,>=4.12 (from jupyter-console->jupyter->-r requirements.txt (line 15))
+  Downloading jupyter_core-4.12.0-py3-none-any.whl (89 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 89.9/89.9 kB 319.6 kB/s eta 0:00:00
+Collecting prompt-toolkit>=3.0.30 (from jupyter-console->jupyter->-r requirements.txt (line 15))
+  Downloading prompt_toolkit-3.0.38-py3-none-any.whl (385 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 385.8/385.8 kB 1.6 MB/s eta 0:00:00
+Collecting pygments (from jupyter-console->jupyter->-r requirements.txt (line 15))
+  Downloading Pygments-2.15.1-py3-none-any.whl (1.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 2.5 MB/s eta 0:00:00
+Collecting beautifulsoup4 (from nbconvert->jupyter->-r requirements.txt (line 15))
+  Downloading beautifulsoup4-4.12.2-py3-none-any.whl (142 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.0/143.0 kB 519.5 kB/s eta 0:00:00
+Collecting bleach (from nbconvert->jupyter->-r requirements.txt (line 15))
+  Downloading bleach-6.0.0-py3-none-any.whl (162 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 162.5/162.5 kB 868.4 kB/s eta 0:00:00
+Collecting defusedxml (from nbconvert->jupyter->-r requirements.txt (line 15))
+  Downloading defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+Collecting jupyterlab-pygments (from nbconvert->jupyter->-r requirements.txt (line 15))
+  Downloading jupyterlab_pygments-0.2.2-py2.py3-none-any.whl (21 kB)
+Collecting mistune<3,>=2.0.3 (from nbconvert->jupyter->-r requirements.txt (line 15))
+  Downloading mistune-2.0.5-py2.py3-none-any.whl (24 kB)
+Collecting nbclient>=0.5.0 (from nbconvert->jupyter->-r requirements.txt (line 15))
+  Downloading nbclient-0.7.4-py3-none-any.whl (73 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.1/73.1 kB 187.5 kB/s eta 0:00:00
+Collecting nbformat>=5.1 (from nbconvert->jupyter->-r requirements.txt (line 15))
+  Downloading nbformat-5.8.0-py3-none-any.whl (77 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 77.4/77.4 kB 315.1 kB/s eta 0:00:00
+Collecting pandocfilters>=1.4.1 (from nbconvert->jupyter->-r requirements.txt (line 15))
+  Downloading pandocfilters-1.5.0-py2.py3-none-any.whl (8.7 kB)
+Collecting tinycss2 (from nbconvert->jupyter->-r requirements.txt (line 15))
+  Downloading tinycss2-1.2.1-py3-none-any.whl (21 kB)
+Collecting argon2-cffi (from notebook->jupyter->-r requirements.txt (line 15))
+  Downloading argon2_cffi-21.3.0-py3-none-any.whl (14 kB)
+Collecting ipython-genutils (from notebook->jupyter->-r requirements.txt (line 15))
+  Downloading ipython_genutils-0.2.0-py2.py3-none-any.whl (26 kB)
+Collecting Send2Trash>=1.8.0 (from notebook->jupyter->-r requirements.txt (line 15))
+  Downloading Send2Trash-1.8.0-py3-none-any.whl (18 kB)
+Collecting terminado>=0.8.3 (from notebook->jupyter->-r requirements.txt (line 15))
+  Downloading terminado-0.17.1-py3-none-any.whl (17 kB)
+Collecting prometheus-client (from notebook->jupyter->-r requirements.txt (line 15))
+  Downloading prometheus_client-0.16.0-py3-none-any.whl (122 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 122.5/122.5 kB 373.3 kB/s eta 0:00:00
+Collecting nbclassic>=0.4.7 (from notebook->jupyter->-r requirements.txt (line 15))
+  Downloading nbclassic-0.5.5-py3-none-any.whl (10.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.0/10.0 MB 15.6 MB/s eta 0:00:00
+Collecting text-unidecode>=1.3 (from python-slugify->kaggle->-r requirements.txt (line 20))
+  Downloading text_unidecode-1.3-py2.py3-none-any.whl (78 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.2/78.2 kB 414.1 kB/s eta 0:00:00
+Collecting qtpy>=2.0.1 (from qtconsole->jupyter->-r requirements.txt (line 15))
+  Downloading QtPy-2.3.1-py3-none-any.whl (84 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 84.9/84.9 kB 365.9 kB/s eta 0:00:00
+Collecting smmap<6,>=3.0.1 (from gitdb<5,>=4.0.1->GitPython!=3.1.29,>=1.0.0->wandb->-r requirements.txt (line 19))
+  Using cached smmap-5.0.0-py3-none-any.whl (24 kB)
+Collecting jedi>=0.16 (from ipython>=7.23.1->ipykernel->jupyter->-r requirements.txt (line 15))
+  Downloading jedi-0.18.2-py2.py3-none-any.whl (1.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 6.8 MB/s eta 0:00:00
+Collecting decorator (from ipython>=7.23.1->ipykernel->jupyter->-r requirements.txt (line 15))
+  Downloading decorator-5.1.1-py3-none-any.whl (9.1 kB)
+Collecting pickleshare (from ipython>=7.23.1->ipykernel->jupyter->-r requirements.txt (line 15))
+  Downloading pickleshare-0.7.5-py2.py3-none-any.whl (6.9 kB)
+Collecting backcall (from ipython>=7.23.1->ipykernel->jupyter->-r requirements.txt (line 15))
+  Downloading backcall-0.2.0-py2.py3-none-any.whl (11 kB)
+Collecting pexpect>4.3 (from ipython>=7.23.1->ipykernel->jupyter->-r requirements.txt (line 15))
+  Downloading pexpect-4.8.0-py2.py3-none-any.whl (59 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 59.0/59.0 kB 191.2 kB/s eta 0:00:00
+Collecting entrypoints (from jupyter-client>=6.1.12->ipykernel->jupyter->-r requirements.txt (line 15))
+  Downloading entrypoints-0.4-py3-none-any.whl (5.3 kB)
+Collecting jupyter-server>=1.8 (from nbclassic>=0.4.7->notebook->jupyter->-r requirements.txt (line 15))
+  Downloading jupyter_server-1.24.0-py3-none-any.whl (347 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 347.5/347.5 kB 1.4 MB/s eta 0:00:00
+Collecting notebook-shim>=0.1.0 (from nbclassic>=0.4.7->notebook->jupyter->-r requirements.txt (line 15))
+  Downloading notebook_shim-0.2.3-py3-none-any.whl (13 kB)
+Collecting fastjsonschema (from nbformat>=5.1->nbconvert->jupyter->-r requirements.txt (line 15))
+  Downloading fastjsonschema-2.16.3-py3-none-any.whl (23 kB)
+Collecting jsonschema>=2.6 (from nbformat>=5.1->nbconvert->jupyter->-r requirements.txt (line 15))
+  Downloading jsonschema-4.17.3-py3-none-any.whl (90 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 90.4/90.4 kB 403.3 kB/s eta 0:00:00
+Collecting wcwidth (from prompt-toolkit>=3.0.30->jupyter-console->jupyter->-r requirements.txt (line 15))
+  Downloading wcwidth-0.2.6-py2.py3-none-any.whl (29 kB)
+Collecting ptyprocess (from terminado>=0.8.3->notebook->jupyter->-r requirements.txt (line 15))
+  Downloading ptyprocess-0.7.0-py2.py3-none-any.whl (13 kB)
+Collecting argon2-cffi-bindings (from argon2-cffi->notebook->jupyter->-r requirements.txt (line 15))
+  Downloading argon2_cffi_bindings-21.2.0-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (86 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 86.2/86.2 kB 464.2 kB/s eta 0:00:00
+Collecting soupsieve>1.2 (from beautifulsoup4->nbconvert->jupyter->-r requirements.txt (line 15))
+  Downloading soupsieve-2.4.1-py3-none-any.whl (36 kB)
+Collecting webencodings (from bleach->nbconvert->jupyter->-r requirements.txt (line 15))
+  Downloading webencodings-0.5.1-py2.py3-none-any.whl (11 kB)
+Collecting parso<0.9.0,>=0.8.0 (from jedi>=0.16->ipython>=7.23.1->ipykernel->jupyter->-r requirements.txt (line 15))
+  Downloading parso-0.8.3-py2.py3-none-any.whl (100 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100.8/100.8 kB 475.8 kB/s eta 0:00:00
+Collecting importlib-resources>=1.4.0 (from jsonschema>=2.6->nbformat>=5.1->nbconvert->jupyter->-r requirements.txt (line 15))
+  Downloading importlib_resources-5.12.0-py3-none-any.whl (36 kB)
+Collecting pkgutil-resolve-name>=1.3.10 (from jsonschema>=2.6->nbformat>=5.1->nbconvert->jupyter->-r requirements.txt (line 15))
+  Downloading pkgutil_resolve_name-1.3.10-py3-none-any.whl (4.7 kB)
+Collecting pyrsistent!=0.17.0,!=0.17.1,!=0.17.2,>=0.14.0 (from jsonschema>=2.6->nbformat>=5.1->nbconvert->jupyter->-r requirements.txt (line 15))
+  Downloading pyrsistent-0.19.3-py3-none-any.whl (57 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 57.5/57.5 kB 126.4 kB/s eta 0:00:00
+Collecting anyio<4,>=3.1.0 (from jupyter-server>=1.8->nbclassic>=0.4.7->notebook->jupyter->-r requirements.txt (line 15))
+  Downloading anyio-3.6.2-py3-none-any.whl (80 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 80.6/80.6 kB 152.4 kB/s eta 0:00:00
+Collecting websocket-client (from jupyter-server>=1.8->nbclassic>=0.4.7->notebook->jupyter->-r requirements.txt (line 15))
+  Downloading websocket_client-1.5.1-py3-none-any.whl (55 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 55.9/55.9 kB 234.0 kB/s eta 0:00:00
+Collecting cffi>=1.0.1 (from argon2-cffi-bindings->argon2-cffi->notebook->jupyter->-r requirements.txt (line 15))
+  Downloading cffi-1.15.1-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (427 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 427.9/427.9 kB 1.5 MB/s eta 0:00:00
+Collecting sniffio>=1.1 (from anyio<4,>=3.1.0->jupyter-server>=1.8->nbclassic>=0.4.7->notebook->jupyter->-r requirements.txt (line 15))
+  Downloading sniffio-1.3.0-py3-none-any.whl (10 kB)
+Collecting pycparser (from cffi>=1.0.1->argon2-cffi-bindings->argon2-cffi->notebook->jupyter->-r requirements.txt (line 15))
+  Downloading pycparser-2.21-py2.py3-none-any.whl (118 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.7/118.7 kB 398.5 kB/s eta 0:00:00
+Building wheels for collected packages: kaggle, pathtools
+  Building wheel for kaggle (setup.py): started
+  Building wheel for kaggle (setup.py): finished with status 'done'
+  Created wheel for kaggle: filename=kaggle-1.5.13-py3-none-any.whl size=77717 sha256=ed441c7a210abc71f68cc5956334050c479be924a68fa6ffe068b979ef0f916b
+  Stored in directory: /home/jthr/.cache/pip/wheels/fd/97/a6/3372cb23468915cbcf108338dd29c73379fd1a55828ec608ba
+  Building wheel for pathtools (setup.py): started
+  Building wheel for pathtools (setup.py): finished with status 'done'
+  Created wheel for pathtools: filename=pathtools-0.1.2-py3-none-any.whl size=8791 sha256=4e9060cd47bf63e5ca271161292f75c69f1cc5e0cfdc99b4900f346fe25cd2cb
+  Stored in directory: /home/jthr/.cache/pip/wheels/3e/31/09/fa59cef12cdcfecc627b3d24273699f390e71828921b2cbba2
+Successfully built kaggle pathtools
+Installing collected packages: webencodings, wcwidth, torchsummary, tokenizers, text-unidecode, Send2Trash, pytz, ptyprocess, pickleshare, pathtools, mistune, ipython-genutils, fastjsonschema, backcall, appdirs, zipp, xxhash, widgetsnbextension, websocket-client, urllib3, typing-extensions, traitlets, tqdm, tornado, tinycss2, threadpoolctl, soupsieve, sniffio, smmap, six, setproctitle, regex, pyzmq, pyyaml, python-slugify, pyrsistent, pyparsing, pygments, pycparser, psutil, protobuf, prompt-toolkit, prometheus-client, pkgutil-resolve-name, pillow, pexpect, parso, pandocfilters, packaging, nvidia-cuda-runtime-cu11, nvidia-cuda-nvrtc-cu11, nvidia-cublas-cu11, numpy, nest-asyncio, multidict, MarkupSafe, jupyterlab-widgets, jupyterlab-pygments, joblib, idna, fsspec, frozenlist, fonttools, filelock, entrypoints, dill, defusedxml, decorator, debugpy, cycler, charset-normalizer, certifi, asynctest, yarl, terminado, sentry-sdk, scipy, requests, qtpy, python-dateutil, pyarrow, opencv-python-rolling, opencv-python, nvidia-cudnn-cu11, multiprocess, matplotlib-inline, kiwisolver, jupyter-core, jinja2, jedi, importlib-resources, importlib-metadata, gitdb, docker-pycreds, cffi, bleach, beautifulsoup4, async-timeout, anyio, aiosignal, torch, scikit-learn, responses, pandas, matplotlib, kaggle, jupyter-client, ipython, huggingface-hub, GitPython, Click, branca, attrs, argon2-cffi-bindings, wandb, transformers, torchvision, seaborn, jsonschema, ipykernel, folium, argon2-cffi, aiohttp, qtconsole, nbformat, jupyter-console, ipywidgets, nbclient, datasets, nbconvert, evaluate, jupyter-server, notebook-shim, nbclassic, notebook, jupyter

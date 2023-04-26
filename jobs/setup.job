@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #SBATCH --job-name=simple        # Job name
-#SBATCH --output=logs/%j.out     # Name of output file (%j expands to jobId)
+#SBATCH --output=jobs/%j.out     # Name of output file (%j expands to jobId)
 #SBATCH --cpus-per-task=1        # Schedule one core
-#SBATCH --time=02:00:00          # Run time (hh:mm:ss) - run for one hour max
-#SBATCH --partition=brown        # Run on either the Red or Brown queue
+#SBATCH --time=00:59:00          # Run time (hh:mm:ss) - run for one hour max
+#SBATCH --partition=short        # Run on either the Red or Brown queue
 
 # load modules
 module load Python/3.7.4-GCCcore-8.3.0
