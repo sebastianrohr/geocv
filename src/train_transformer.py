@@ -1,8 +1,5 @@
 import torch
 from torch import cuda
-from torch.utils.data import DataLoader
-from torchvision import transforms
-from torchvision.datasets import ImageFolder
 
 from argparse import ArgumentParser
 
@@ -11,14 +8,12 @@ import wandb
 import numpy as np
 import evaluate
 
-from datasets import Dataset
 from datasets import load_dataset
 
 from transformers import ViTFeatureExtractor
 from transformers import ViTForImageClassification
 from transformers import TrainingArguments
 from transformers import Trainer
-from transformers import ViTImageProcessor
 
 from load_data import train_test_set_loader
 
@@ -96,9 +91,6 @@ if __name__ == '__main__':
         else:
             multi_gpu = False
 
-
-
-
     training_args = TrainingArguments(
         output_dir=output_dir,
         per_device_train_batch_size=batch_size,
@@ -116,7 +108,6 @@ if __name__ == '__main__':
         run_name=f"lr_{lr}_batch_{batch_size}_epochs_{epochs}_output_dir_{output_dir}",
         load_best_model_at_end=True,
     )
-
 
     prepared_data = data_collection()
     labels = prepared_data["train"].features['label'].names
