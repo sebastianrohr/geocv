@@ -4,6 +4,10 @@ from torch import cuda
 from argparse import ArgumentParser
 
 import wandb
+from wandb.sdk import wandb_config
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, TrainingArguments, Trainer
+from datasets import load_dataset
+from transformers import EarlyStoppingCallback
 
 import numpy as np
 import evaluate
@@ -42,9 +46,9 @@ def compute_metrics(p):
 
 def arg_parser():
     parser = ArgumentParser()
-    parser.add_argument('--batch_size', type=int, default=64)
-    parser.add_argument('--epochs', type=int, default=10)
-    parser.add_argument('--lr', type=float, default=0.001)
+    # parser.add_argument('--batch_size', type=int, default=64)
+    # parser.add_argument('--epochs', type=int, default=10)
+    # parser.add_argument('--lr', type=float, default=0.001)
     parser.add_argument('--output_dir', type=str, default="vit-base-cities")
     parser.add_argument('--data_load', action='store_true')
     parser.add_argument('--no-data_load', dest='data_load', action='store_false')
@@ -70,9 +74,9 @@ if __name__ == '__main__':
     # read args
     args = arg_parser()
 
-    batch_size = args.batch_size
-    epochs = args.epochs
-    lr = args.lr
+    # batch_size = args.batch_size
+    # epochs = args.epochs
+    # lr = args.lr
     output_dir = args.output_dir
     data_load = args.data_load
     if data_load:
@@ -91,23 +95,33 @@ if __name__ == '__main__':
         else:
             multi_gpu = False
 
+    hyperparameter_defaults = dict(
+        lr = 2e-5,
+        epochs = 5,
+        batch_size = 32,
+    )
+
+    wandb.init(config=hyperparameter_defaults, entity="soy_sexy", project="geocv")
+
     training_args = TrainingArguments(
         output_dir=output_dir,
-        per_device_train_batch_size=batch_size,
-        evaluation_strategy="steps",
-        num_train_epochs=epochs,
-        fp16=True,
+        evaluation_strategy = "steps",
         save_steps=100,
-        eval_steps=100,
-        logging_steps=10,
-        learning_rate=lr,
-        save_total_limit=2,
-        remove_unused_columns=False,
+        eval_steps = 100,
+        save_total_limit = 3,
+        learning_rate = wandb.config.lr,
+        per_device_train_batch_size = wandb.config.batch_size,
+        num_train_epochs = wandb.config.epochs,
+        fp16 = True,
+        logging_steps = 10,
         push_to_hub=False,
-        report_to='wandb',
-        run_name=f"lr_{lr}_batch_{batch_size}_epochs_{epochs}_output_dir_{output_dir}",
+        # report_to='wandb',
+        run_name=f"lr_{wandb.config.lr}_batch_{wandb.config.batch_size}_epochs_{wandb.config.epochs}_output_dir_{output_dir}",
         load_best_model_at_end=True,
+        metric_for_best_model = "eval_accuracy",
+        greater_is_better = True
     )
+
 
     prepared_data = data_collection()
     labels = prepared_data["train"].features['label'].names
@@ -127,18 +141,44 @@ if __name__ == '__main__':
         train_dataset=prepared_data["train"],
         eval_dataset=prepared_data["validation"],
         tokenizer=feature_extractor,
+        callbacks=[EarlyStoppingCallback(early_stopping_patience=3)]
     )
 
-    train_results = trainer.train()
-    trainer.save_model()
-    trainer.log_metrics("train", train_results.metrics)
-    trainer.save_metrics("train", train_results.metrics)
-    trainer.save_state()
+    def train():
+        trainer.train()
+    
+    sweep_config = {
+        "method": "bayes",
+        "metric": {"name": "eval_accuracy", "goal": "maximize"},
+        "parameters": {"lr": {"min": 1e-6, "max": 1e-4}, "epochs": {"min": 2, "max": 7}, "batch_size": {"values": [16, 32, 64]}},
+        "early_terminate": {"type": "hyperband", "s": 2, "eta": 3, "max_iter": 27}
+    }
 
-    metrics = trainer.evaluate(prepared_data["validation"])
-    trainer.log_metrics("eval", metrics)
-    trainer.save_metrics("eval", metrics)
+    sweep_id = wandb.sweep(sweep_config, entity="soy_sexy", project="geocv")
 
-    test_metrics = trainer.predict(prepared_data["test"])
-    trainer.log_metrics("test", test_metrics.metrics)
-    trainer.save_metrics("test", test_metrics.metrics)
+    def run():
+        with wandb.init(entity="soy_sexy", project="geocv") as run:
+            train()
+            wandb.log({"eval_accuracy": trainer.evaluate(prepared_data["validation"]).metrics["eval_accuracy"]})
+
+    def run():
+        wandb.init()
+        train()
+        wandb.log({"eval_accuracy": trainer.evaluate(prepared_data["validation"]).metrics["eval_accuracy"]})
+
+
+    wandb.agent(sweep_id=sweep_id, function=run)
+
+    # train_results = trainer.train()
+    # trainer.save_model()
+    # trainer.log_metrics("train", train_results.metrics)
+    # trainer.save_metrics("train", train_results.metrics)
+    # trainer.save_state()
+
+    # metrics = trainer.evaluate(prepared_data["validation"])
+    # trainer.log_metrics("eval", metrics)
+    # trainer.save_metrics("eval", metrics)
+
+    # test_metrics = trainer.predict(prepared_data["test"])
+    # trainer.log_metrics("test", test_metrics.metrics)
+    # trainer.save_metrics("test", test_metrics.metrics)
