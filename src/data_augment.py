@@ -17,7 +17,7 @@ transform = transforms.Compose([
     transforms.RandomApply([transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1)], p=0.1),
     transforms.ToTensor()
 
-    #normalize function fucks the pixels too much, avoid
+    #normalize function, done by tokenizer
     #transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     #transforms.Normalize(mean=[0.5], std=[0.5])
 ])
