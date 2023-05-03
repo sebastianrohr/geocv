@@ -161,12 +161,6 @@ if __name__ == '__main__':
             train()
             wandb.log({"eval_accuracy": trainer.evaluate(prepared_data["validation"]).metrics["eval_accuracy"]})
 
-    def run():
-        wandb.init()
-        train()
-        wandb.log({"eval_accuracy": trainer.evaluate(prepared_data["validation"]).metrics["eval_accuracy"]})
-
-
     wandb.agent(sweep_id=sweep_id, function=run)
 
     # train_results = trainer.train()
