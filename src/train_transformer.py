@@ -18,26 +18,58 @@ panos = False
 model_name_or_path = 'google/vit-base-patch16-224-in21k'
 
 feature_extractor = ViTFeatureExtractor.from_pretrained(model_name_or_path)
+metric = evaluate.load("accuracy")
 
 def transform(example_batch):
-    # Take a list of PIL images and turn them to pixel values
+    """
+    Transform the input image to the feature vectors to be used by the model.
+
+    Args:
+        example_batch: A batch of input images.
+
+    Returns:
+        The transformed input features with labels.
+    """
     inputs = feature_extractor([x for x in example_batch['pixel_values']], return_tensors='pt')
 
-    # Don't forget to include the labels!
+    # include the labels
     inputs['label'] = example_batch['label']
     return inputs
 
 def collate_fn(batch):
+    """
+    Collate function to convert a batch of samples into a batch of tensors.
+
+    Args:
+        batch: A batch of samples.
+
+    Returns:
+        A batch of tensors.
+    """
     return {
         'pixel_values': torch.stack([x['pixel_values'] for x in batch]),
         'labels': torch.tensor([x['label'] for x in batch])
     }
 
-metric = evaluate.load("accuracy")
 def compute_metrics(p):
+    """
+    Compute the evaluation metrics.
+
+    Args:
+        p: The predicted output.
+
+    Returns:
+        The computed evaluation metric.
+    """
     return metric.compute(predictions=np.argmax(p.predictions, axis=1), references=p.label_ids)
 
 def arg_parser():
+    """
+    Parses the command line arguments.
+
+    Returns:
+        The parsed command line arguments.
+    """
     parser = ArgumentParser()
     parser.add_argument('--batch_size', type=int, default=64)
     parser.add_argument('--epochs', type=int, default=10)
@@ -55,6 +87,15 @@ def arg_parser():
 
 
 def data_collection(data_dir='data'):
+    """
+    Load the input data and transform it into features for the model.
+
+    Args:
+        data_dir: The location of the input data.
+
+    Returns:
+        The processed data.
+    """
     
     # Location of data
     datadir = data_dir
@@ -68,17 +109,20 @@ def data_collection(data_dir='data'):
     return prepared_data
 
 def hyperparameter_sweep(output_dir, data_dir):
+    """
+    Perform hyperparameter sweep to find the best model.
+
+    Args:
+        output_dir: The output directory for the model.
+        data_dir: The location of the input data.
+    """
 
     data_dir = data_dir
-
     output_dir = output_dir
-    data_load = data_load
 
-    # Whether to train on a gpu
+    # gpu training 
     train_on_gpu = cuda.is_available()
     print(f'Train on gpu: {train_on_gpu}')
-
-    # Number of gpus
     if train_on_gpu:
         gpu_count = cuda.device_count()
         print(f'{gpu_count} gpus detected.')
@@ -145,7 +189,20 @@ def hyperparameter_sweep(output_dir, data_dir):
 
 
 def train_model(output_dir, data_dir, config):
+    """
+    Train a Vision Transformer (ViT) model for image classification on a given dataset.
 
+    Args:
+        output_dir (str): Path to the directory where the trained model and logs will be saved.
+        data_dir (str): Path to the directory containing the training and validation data.
+        config (dict): Dictionary of configuration parameters including the learning rate, number of epochs,
+            and batch size.
+
+    Returns:
+        None
+    """
+
+    # Hyperparameters
     learning_rate = config["lr"]
     epochs = config["epochs"]
     batch_size = config["batch_size"]
@@ -167,7 +224,7 @@ def train_model(output_dir, data_dir, config):
         else:
             multi_gpu = False
 
-    # creting a dataset
+     # Load the training and validation data and prepare it for training
     prepared_data = data_collection(data_dir)
     labels = prepared_data["train"].features['label'].names
 
@@ -179,6 +236,7 @@ def train_model(output_dir, data_dir, config):
                 label2id={c: str(i) for i, c in enumerate(labels)}
             )
     
+    # Define the training arguments
     training_args = TrainingArguments(
         output_dir=output_dir,
         evaluation_strategy = "steps",
@@ -196,6 +254,7 @@ def train_model(output_dir, data_dir, config):
         metric_for_best_model = "eval_accuracy",
     )
 
+    # Create the Trainer object to handle model training
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -206,31 +265,38 @@ def train_model(output_dir, data_dir, config):
         tokenizer=feature_extractor,
     )
 
+    # Train the model and save the results
     train_results = trainer.train()
     trainer.save_model()
     trainer.log_metrics("train", train_results.metrics)
     trainer.save_metrics("train", train_results.metrics)
     trainer.save_state()
 
+    # Evaluate the trained model on the validation dataset
     metrics = trainer.evaluate(prepared_data["validation"])
     trainer.log_metrics("eval", metrics)
     trainer.save_metrics("eval", metrics)
 
 
 if __name__ == '__main__':
+    """
+    This function is the entry point of the script.
+    It parses the command line arguments and calls the appropriate function(s) based on the arguments.
+    """
 
-    
     # read args
     args = arg_parser()
 
     data_dir = args.data_dir
-
     output_dir = args.output_dir
     data_load = args.data_load
+
     if data_load:
+        # split data into train, validation, and test sets
         train_test_set_loader(test_size=0.25, val_size=0.25, panos=panos)
 
     if not args.hyperparameter_sweep:
+        # train model
         batch_size = args.batch_size
         epochs = args.epochs
         lr = args.lr
@@ -238,4 +304,5 @@ if __name__ == '__main__':
         train_model(output_dir, data_dir, config)
 
     else:
+        # hyperparameter sweep
         hyperparameter_sweep(output_dir, data_dir)
