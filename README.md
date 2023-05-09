@@ -1,11 +1,5 @@
 # 🌎 GeoCV: A Geoguessr Bot in Python 🤖
-GeoCV is a Python-based bot that plays the popular online game, Geoguessr, for you! It uses computer vision and machine learning techniques to analyze the image and guess the location.
-
-## 🚀 Features
-- Automatically plays Geoguessr using computer vision and machine learning
-- Uses Google Street View API to fetch image data
-- Easy-to-use command line interface
-- Customizable settings for game difficulty and bot accuracy
+This code uses a ViT (Vision Transformer) for image classification. It loads the "google/vit-base-patch16-224-in21k" pre-trained model from the Hugging Face Transformers library and fine-tunes it on a custom dataset.
 
 ## 💻 Installation
 Create a new virtual environment and install the required dependencies:
@@ -15,27 +9,51 @@ source env/bin/activate
 pip3 install -r requirements.txt
 ```
 
+## For ML mini project
+Relevant files are 
+1. train_transformer.py, where all the actual training happens and the hyperparameter search is defined
+2. geoguessr_guessr_bot.ipynb for an overview, we will also use that notebook for our presentation.
+
+## Code
+There are two modes of operation:
+
+1. Hyperparameter sweep: This mode will run a hyperparameter sweep using WandB. It will search for the best combination of hyperparameters among the ones specified in hyperparameter_sweep(). To run this mode, call the function hyperparameter_sweep(output_dir, data_dir) with the desired output and data directories as arguments. Or see below for a command line interface.
+
+2. Train model: This mode will train the model on the specified dataset using the hyperparameters specified in the config dictionary. To run this mode, call the function train_model(output_dir, data_dir, config) with the desired output and data directories, as well as a configuration dictionary with hyperparameters as arguments. Or see below for a command line interface.
+
+## 📂 Data
+When running the script for the first time the data_load parameter should be passed to split the images into train, validation and test set. The data directory should contain a subdirectory for each city. Each city directory should contain the images for that city.
+The data directory should contain the following files and be called "output":
+```
+output
+├── city1
+│   ├── image1.jpg
+│   ├── image2.jpg
+│   ├── ...
+│   └── imageN.jpg
+├── city2
+│   ├── image1.jpg
+│   ├── image2.jpg
+│   ├── ...
+│   └── imageN.jpg
+├── ...
+└── cityN
+    ├── image1.jpg
+    ├── image2.jpg
+    ├── ...
+    └── imageN.jpg
+```
+
+
 ## 🎮 Usage
-To use the scrape output data, run the following command:
+To perform a hyperparameter search, run the following command:
 
 ```
-python3 ./src/scraper.py -l paris -n 10
+python3 train_transformer.py --data_dir path/to/data --output_dir path/to/output --hyperparameter_search --data_load
 ```
-The `-l` flag specifies the location, `-n` specifies number of locations
 
-## 📝 Todo
-✅ Make Scraper
+To train a model, run the following command and adjust the hyperparemeters as needed:
+```
+python3 train_transformer.py --data_dir path/to/data --output_dir path/to/output --batch_size 32 --learning_rate 1e-4 --num_epochs 10 --data_load
+```
 
-✅ Get more API requests
-
-✅ Decide on cities - Moscow, Copenhagen, Madrid, London
-
-✅ Run the stuff
-
-✅ Store the data
-
-❌ Consider preprocessing the images
-
-✅ Build the transformer
-
-✅ Visualize the attention

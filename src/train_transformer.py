@@ -39,14 +39,17 @@ def compute_metrics(p):
 
 def arg_parser():
     parser = ArgumentParser()
-    # parser.add_argument('--batch_size', type=int, default=64)
-    # parser.add_argument('--epochs', type=int, default=10)
-    # parser.add_argument('--lr', type=float, default=0.001)
+    parser.add_argument('--batch_size', type=int, default=64)
+    parser.add_argument('--epochs', type=int, default=10)
+    parser.add_argument('--lr', type=float, default=0.001)
     parser.add_argument('--data_dir', type=str, default="data")
     parser.add_argument('--output_dir', type=str, default="vit-base-cities")
     parser.add_argument('--data_load', action='store_true')
     parser.add_argument('--no-data_load', dest='data_load', action='store_false')
     parser.set_defaults(data_load=True)
+    parser.add_argument('--hyperparameter_sweep', action='store_true')
+    parser.add_argument('--no-hyperparameter_sweep', dest='hyperparameter_sweep', action='store_false')
+    parser.set_defaults(hyperparameter_sweep=False)
     args = parser.parse_args()
     return args
 
@@ -220,10 +223,6 @@ if __name__ == '__main__':
     # read args
     args = arg_parser()
 
-    # batch_size = args.batch_size
-    # epochs = args.epochs
-    # lr = args.lr
-
     data_dir = args.data_dir
 
     output_dir = args.output_dir
@@ -231,4 +230,12 @@ if __name__ == '__main__':
     if data_load:
         train_test_set_loader(test_size=0.25, val_size=0.25, panos=panos)
 
-    hyperparameter_sweep(output_dir, data_dir)
+    if not args.hyperparameter_sweep:
+        batch_size = args.batch_size
+        epochs = args.epochs
+        lr = args.lr
+        config = {"lr": lr, "epochs": epochs, "batch_size": batch_size}
+        train_model(output_dir, data_dir, config)
+
+    else:
+        hyperparameter_sweep(output_dir, data_dir)
