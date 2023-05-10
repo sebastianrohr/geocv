@@ -3,8 +3,8 @@ This code uses a ViT (Vision Transformer) for image classification. It loads the
 
 ## 🤖 For ML mini project
 Relevant files are 
-1. `train_transformer.py` where all the actual training happens and the hyperparameter search is defined
-2. `geoguessr_guessr_bot.ipynb` for an overview, we will also use that notebook for our presentation.
+1. `src/train_transformer.py` where all the actual training happens and the hyperparameter search function is defined
+2. `src/geoguessr_guessr_bot.ipynb` for an overview, we will also use that notebook for our presentation.
 
 ## 💻 Installation
 Create a new virtual environment and install the required dependencies:
