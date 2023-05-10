@@ -1,10 +1,15 @@
 # 🌎 GeoCV: A Geoguessr Bot in Python
-This code uses a ViT (Vision Transformer) for image classification. It loads the [ViT-base-patch16-224](https://huggingface.co/google/vit-base-patch16-224) pre-trained model from the Hugging Face 🤗 Transformers library and fine-tunes it on a custom dataset.
+This code uses a ViT (Vision Transformer) for image classification. It loads the [ViT-base-patch16-224](https://huggingface.co/google/vit-base-patch16-224) pre-trained model from the Hugging Face 🤗 Transformers library and fine-tunes it on a custom dataset. We got the idea after finding this paper: [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/abs/2010.11929)
 
-## 🤖 For ML mini project
-Relevant files are 
-1. `src/train_transformer.py` where all the actual training happens and the hyperparameter search function is defined
-2. `src/geoguessr_guessr_bot.ipynb` for an overview, we will also use that notebook for our presentation.
+# 🤖 For ML mini project
+We plan to use this repo for further projects ander therefore do not want to delete any code yet.
+For the ML mini project there are two relevant files:
+## Training script
+`src/train_transformer.py` where all the actual training happens and the hyperparameter search function is defined
+## Overview Notebook
+ `src/geoguessr_guessr_bot.ipynb` for an overview, we will also use that notebook for our presentation.
+
+# Documentation
 
 ## 💻 Installation
 Create a new virtual environment and install the required dependencies:
