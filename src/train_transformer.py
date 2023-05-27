@@ -30,7 +30,7 @@ def transform(example_batch):
     Returns:
         The transformed input features with labels.
     """
-    inputs = feature_extractor([x for x in example_batch['pixel_values']], return_tensors='pt')
+    inputs = feature_extractor([x for x in example_batch['image']], return_tensors='pt')
 
     # include the labels
     inputs['label'] = example_batch['label']
@@ -102,9 +102,9 @@ def data_collection(data_dir='data'):
 
     # Datasets from each folder
     data = load_dataset("imagefolder", data_dir=datadir)
-    datasets_processed = data.rename_column('image', 'pixel_values')
+    # datasets_processed = data.rename_column('image', 'pixel_values')
 
-    prepared_data = datasets_processed.with_transform(transform)
+    prepared_data = data.with_transform(transform)
 
     return prepared_data
 
@@ -169,6 +169,7 @@ def hyperparameter_sweep(output_dir, data_dir):
                 run_name=f"lr_{config.lr}_batch_{config.batch_size}_epochs_{config.epochs}_output_dir_{output_dir}",
                 load_best_model_at_end=True,
                 metric_for_best_model = "eval_accuracy",
+                remove_unused_columns=False,
             )
 
             trainer = Trainer(
@@ -252,6 +253,7 @@ def train_model(output_dir, data_dir, config):
         run_name=f"lr_{learning_rate}_batch_{batch_size}_epochs_{epochs}_output_dir_{output_dir}",
         load_best_model_at_end=True,
         metric_for_best_model = "eval_accuracy",
+        remove_unused_columns=False,
     )
 
     # Create the Trainer object to handle model training
